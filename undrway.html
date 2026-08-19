@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>undrway</title>
+<style>
+  :root{
+    --bg: #050408;
+    --bg-soft: #0a0810;
+    --card: #0e0c16;
+    --border: #221c30;
+    --purple: #8b5cf6;
+    --purple-light: #b794f6;
+    --purple-dark: #5b21b6;
+    --text: #f0edf7;
+    --text-muted: #837a99;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height:100vh;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 24px 6%;
+    position: sticky;
+    top:0;
+    background: rgba(5,4,8,0.9);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    z-index: 50;
+  }
+  .logo{
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg, var(--purple-light), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  nav a{
+    margin-left: 28px;
+    font-size: 14px;
+    color: var(--text-muted);
+    transition: color .2s;
+  }
+  nav a:hover{ color: var(--purple-light); }
+
+  .hero{
+    padding: 110px 6% 90px;
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .hero span.tag{
+    display:inline-block;
+    padding: 6px 16px;
+    border: 1px solid var(--purple-dark);
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--purple-light);
+    background: rgba(139,92,246,0.08);
+    margin-bottom: 22px;
+  }
+  .hero h1{
+    font-size: clamp(32px, 6vw, 56px);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .hero h1 .accent{
+    background: linear-gradient(90deg, var(--purple), var(--purple-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p{
+    color: var(--text-muted);
+    font-size: 17px;
+    max-width: 600px;
+    margin: 0 auto 34px;
+  }
+  .btn{
+    display:inline-block;
+    padding: 14px 30px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor:pointer;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn-primary{
+    background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(139,92,246,0.35);
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px rgba(139,92,246,0.5); }
+
+  section{ padding: 70px 6%; max-width: 1100px; margin: 0 auto; }
+  .section-title{
+    text-align:center;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-sub{
+    text-align:center;
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 46px;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+  }
+  .card{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: border-color .2s, transform .2s;
+  }
+  .card:hover{ border-color: var(--purple-dark); transform: translateY(-4px); }
+  .card .icon{
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: rgba(139,92,246,0.15);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: var(--purple-light);
+  }
+  .card h3{ font-size: 17px; margin-bottom: 8px; }
+  .card p{ font-size: 14px; color: var(--text-muted); }
+
+  .about{
+    background: var(--bg-soft);
+    border-radius: 24px;
+    padding: 50px 40px;
+    text-align:center;
+    border: 1px solid var(--border);
+  }
+  .about h2{ font-size: 26px; margin-bottom: 14px; }
+  .about p{ color: var(--text-muted); max-width: 640px; margin: 0 auto; }
+
+  .contact-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .contact-card{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 26px;
+    display:flex;
+    align-items:center;
+    gap: 16px;
+    transition: border-color .2s, transform .2s;
+  }
+  .contact-card:hover{ border-color: var(--purple); transform: translateY(-3px); }
+  .contact-card .ic{
+    width: 46px; height:46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+    display:flex; align-items:center; justify-content:center;
+    font-size: 20px;
+    color:#fff;
+    flex-shrink:0;
+  }
+  .contact-card .label{ font-size: 12px; color: var(--text-muted); text-transform:uppercase; letter-spacing: 0.5px;}
+  .contact-card .value{ font-size: 15px; font-weight: 600; word-break: break-all; }
+
+  footer{
+    text-align:center;
+    padding: 30px 6% 40px;
+    color: var(--text-muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+  }
+  footer .fname{ color: var(--purple-light); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">undrway</div>
+  <nav>
+  </nav>
+</header>
+
+<section class="hero">
+  <span class="tag">servere discord custom</span>
+  <h1>Salut, sunt <span class="accent">undrway</span></h1>
+  <p>Creez servere Discord complete: design, roluri, boturi, canale și structură — totul gata de folosit, la nivelul pe care îl vrei.</p>
+  <a href="#contact" class="btn btn-primary">Contactează-mă</a>
+</section>
+
+<section id="servicii">
+  <h2 class="section-title">Ce fac</h2>
+  <p class="section-sub">Servicii pentru servere Discord, de la zero sau pe unul existent</p>
+  <div class="grid">
+    <div class="card">
+      <div class="icon">🛠️</div>
+      <h3>Setup complet server</h3>
+      <p>Structură de canale, categorii, roluri și permisiuni gândite de la zero.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🎨</div>
+      <h3>Design & identitate</h3>
+      <p>Banner, iconițe, embed-uri și un look unitar pentru serverul tău.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🤖</div>
+      <h3>Boturi & automatizări</h3>
+      <p>Configurare boturi de moderare, welcome, leveling și altele.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🔒</div>
+      <h3>Securitate & moderare</h3>
+      <p>Reguli, anti-raid, verificare membri și un sistem de moderare solid.</p>
+    </div>
+  </div>
+</section>
+
+<section id="despre">
+  <div class="about">
+    <h2>Despre undrway</h2>
+    <p>Construiesc servere Discord de la idee la lansare. Fie că vrei o comunitate, un server de gaming sau unul pentru un proiect, mă ocup de tot procesul ca tu să te concentrezi doar pe ce contează.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <p class="section-sub">Hai să vorbim despre serverul tău</p>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="ic">TT</div>
+      <div>
+        <div class="label">TikTok</div>
+        <div class="value">@undrway556</div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="ic">IG</div>
+      <div>
+        <div class="label">Instagram</div>
+        <div class="value">@undrway_431</div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="ic">@</div>
+      <div>
+        <div class="label">Email</div>
+        <div class="value">undrway08@gmail.com</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 <span class="fname">undrway</span> — toate drepturile rezervate
+</footer>
+
+</body>
+</html>
